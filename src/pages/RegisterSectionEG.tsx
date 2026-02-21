@@ -67,11 +67,11 @@ const RegisterSection = () => {
 
     // Redirect to Razorpay with pre-filled fields
     const params = new URLSearchParams({
-      name: formData.name,
+      full_name: formData.name,
       email: formData.email,
-      contact: formData.phone,
+      phone: formData.phone,
       city: formData.city,
-      occupation: formData.profession,
+      your_occupation: formData.profession,
     });
 
     window.location.href = `${RAZORPAY_PAYMENT_LINK}?${params.toString()}`;
