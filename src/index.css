@@ -1,0 +1,178 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:wght@700;800;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 220 20% 7%;
+    --foreground: 40 20% 95%;
+
+    --card: 220 18% 12%;
+    --card-foreground: 40 20% 95%;
+
+    --popover: 220 18% 12%;
+    --popover-foreground: 40 20% 95%;
+
+    --primary: 36 100% 50%;
+    --primary-foreground: 220 20% 7%;
+
+    --secondary: 220 15% 18%;
+    --secondary-foreground: 40 20% 95%;
+
+    --muted: 220 15% 18%;
+    --muted-foreground: 220 10% 55%;
+
+    --accent: 36 100% 50%;
+    --accent-foreground: 220 20% 7%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 220 15% 20%;
+    --input: 220 15% 20%;
+    --ring: 36 100% 50%;
+
+    --radius: 0.75rem;
+
+    --sidebar-background: 220 20% 7%;
+    --sidebar-foreground: 40 20% 95%;
+    --sidebar-primary: 36 100% 50%;
+    --sidebar-primary-foreground: 220 20% 7%;
+    --sidebar-accent: 220 15% 18%;
+    --sidebar-accent-foreground: 40 20% 95%;
+    --sidebar-border: 220 15% 20%;
+    --sidebar-ring: 36 100% 50%;
+
+    --gradient-primary: linear-gradient(135deg, hsl(36, 100%, 50%), hsl(28, 100%, 55%));
+    --gradient-card: linear-gradient(145deg, hsl(220, 18%, 14%), hsl(220, 18%, 10%));
+    --shadow-glow: 0 0 30px hsl(36, 100%, 50%, 0.15);
+    --shadow-card: 0 4px 20px hsl(0, 0%, 0%, 0.3);
+  }
+
+  .dark {
+    --background: 220 20% 7%;
+    --foreground: 40 20% 95%;
+    --card: 220 18% 12%;
+    --card-foreground: 40 20% 95%;
+    --popover: 220 18% 12%;
+    --popover-foreground: 40 20% 95%;
+    --primary: 36 100% 50%;
+    --primary-foreground: 220 20% 7%;
+    --secondary: 220 15% 18%;
+    --secondary-foreground: 40 20% 95%;
+    --muted: 220 15% 18%;
+    --muted-foreground: 220 10% 55%;
+    --accent: 36 100% 50%;
+    --accent-foreground: 220 20% 7%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 220 15% 20%;
+    --input: 220 15% 20%;
+    --ring: 36 100% 50%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground font-sans;
+    font-family: 'Inter', sans-serif;
+  }
+  h1, h2, h3, h4 {
+    font-family: 'Inter', sans-serif;
+  }
+}
+
+@layer utilities {
+  .text-gradient {
+    @apply bg-clip-text text-transparent;
+    background-image: var(--gradient-primary);
+  }
+  .bg-gradient-primary {
+    background-image: var(--gradient-primary);
+  }
+  .shadow-glow {
+    box-shadow: var(--shadow-glow);
+  }
+  .shadow-card {
+    box-shadow: var(--shadow-card);
+  }
+  .card-gradient {
+    background: var(--gradient-card);
+  }
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Hide scrollbar for horizontal scroll on mobile */
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Remove number input arrows */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+@keyframes shake {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-6px); }
+  50% { transform: translateX(6px); }
+  75% { transform: translateX(-6px); }
+  100% { transform: translateX(0); }
+}
+
+.animate-shake {
+  animation: shake 0.4s ease-in-out;
+}
+
+@keyframes gradient-x {
+  0%, 100% {
+    background-size: 200% 200%;
+    background-position: left center;
+  }
+  50% {
+    background-size: 200% 200%;
+    background-position: right center;
+  }
+}
+
+.animate-gradient-x {
+  animation: gradient-x 4s ease infinite;
+}
+
+.perspective {
+  perspective: 1000px;
+}
+
+@keyframes flip {
+  0% { transform: rotateX(0deg); }
+  50% { transform: rotateX(90deg); }
+  100% { transform: rotateX(0deg); }
+}
+
+.animate-flip {
+  animation: flip 1s ease-in-out;
+}
+
+input[type="radio"] {
+  -webkit-tap-highlight-color: transparent;
+}
+
