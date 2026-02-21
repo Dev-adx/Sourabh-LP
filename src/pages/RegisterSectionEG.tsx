@@ -71,7 +71,6 @@ const RegisterSection = () => {
       email: formData.email,
       phone: formData.phone,
       city: formData.city,
-      your_occupation: formData.profession,
     });
 
     window.location.href = `${RAZORPAY_PAYMENT_LINK}?${params.toString()}`;
@@ -242,12 +241,10 @@ const RegisterSection = () => {
                     }
                   >
                     <option value="">Select Profession</option>
-                    <option value="business">Business Owner</option>
-                    <option value="employee">Employee / Desk Job</option>
-                    <option value="homemaker">Homemaker</option>
-                    <option value="retired">Retired</option>
-                    <option value="student">Student</option>
-                    <option value="other">Other</option>
+                    <option value="Working Professional">Working Professional</option>
+                    <option value="Business Owner / Entrepreneur">Business Owner / Entrepreneur</option>
+                    <option value="Self-Employed / Freelancer">Self-Employed / Freelancer</option>
+                    <option value="Retired / Homemaker">Retired / Homemaker</option>
                   </select>
                 </div>
 
