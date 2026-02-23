@@ -3,30 +3,12 @@ import { Link } from "react-router-dom";
 import { FaCalendarAlt, FaClock, FaGlobe, FaWhatsapp } from "react-icons/fa";
 import { GiPartyPopper } from "react-icons/gi";
 
-declare global {
-  interface Window {
-    fbq?: (...args: any[]) => void;
-  }
-}
-
 const ThankYouEG = () => {
   const [confetti, setConfetti] = useState(true);
 
   useEffect(() => {
     const t = setTimeout(() => setConfetti(false), 4000);
     return () => clearTimeout(t);
-  }, []);
-
-  useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    const status = params.get("razorpay_payment_link_status");
-    const paymentId = params.get("razorpay_payment_id");
-
-    // Fire Facebook Purchase pixel on confirmed payment
-    if (status === "paid" && paymentId) {
-      if (window.fbq) window.fbq("track", "Purchase", { value: 99, currency: "INR" });
-    }
-    // Google Sheet is handled by the Razorpay webhook on the backend
   }, []);
 
   return (

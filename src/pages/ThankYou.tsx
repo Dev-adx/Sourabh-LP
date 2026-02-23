@@ -1,11 +1,8 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { FaCalendarAlt, FaClock, FaGlobe, FaWhatsapp } from "react-icons/fa";
 import { GiPartyPopper } from "react-icons/gi";
 import { useWorkshopConfig } from "@/hooks/useWorkshopConfig";
 import { formatDateWithSuffix, formatTime } from "@/utils/dateHelpers";
-import { useFacebookPixel } from "@/hooks/useFacebookPixel";
-
-
 
 const ThankYou = () => {
   const { config } = useWorkshopConfig();
@@ -15,14 +12,6 @@ const ThankYou = () => {
   const day2 = config?.day2_datetime || "2026-02-22T10:00:00";
   const whatsappLink =
     config?.whatsapp_link || "https://chat.whatsapp.com/EYhPWBybzoO2xP35GbKKJ0";
-
-  useFacebookPixel({
-    eventName: "Purchase",
-     eventParams: {
-          value: 99,
-          currency: "INR",
-        },
-  });
   
   return (
     <div className="min-h-screen bg-background text-foreground flex items-center justify-center px-4">
