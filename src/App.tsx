@@ -6,12 +6,12 @@ import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { useEffect } from "react";
 
 import Index from "./pages/Index";
-import IndexEG from "./pages/IndexEG";
+import IndexFB from "./pages/IndexFB";
 import ThankYou from "./pages/ThankYou";
 import NotFound from "./pages/NotFound";
-import RegisterSectionEG from "./pages/RegisterSectionEG";
-import ThankYouEG from "./pages/ThankYouEG";
-import PaymentFailedEG from "./pages/PaymentFailedEG";
+import RegisterSectionFB from "./pages/RegisterSectionFB";
+import ThankYouFB from "./pages/ThankYouFB";
+import PaymentFailedFB from "./pages/PaymentFailedFB";
 
 const queryClient = new QueryClient();
 
@@ -38,12 +38,12 @@ const App = () => (
         <MetaRouteTracker />
 
         <Routes>
-          <Route path="/" element={<Index />} />
-          <Route path="/index-eg" element={<IndexEG />} />
-          <Route path="/register-section-eg" element={<RegisterSectionEG />} />
+          <Route path="/index" element={<Index />} />
+          <Route path="/" element={<IndexFB />} />
+          <Route path="/register-section-fb" element={<RegisterSectionFB />} />
           <Route path="/thank-you" element={<ThankYou />} />
-          <Route path="/thank-you-eg" element={<ThankYouEG />} />
-          <Route path="/payment-failed-eg" element={<PaymentFailedEG />} />
+          <Route path="/thank-you-fb" element={<ThankYouFB />} />
+          <Route path="/payment-failed-fb" element={<PaymentFailedFB />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
 
