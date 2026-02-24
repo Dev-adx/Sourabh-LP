@@ -39,7 +39,7 @@ const App = () => (
 
         <Routes>
           <Route path="/" element={<Index />} />
-          <Route path="/index-fb" element={<IndexFB />} />
+          <Route path="/fb" element={<IndexFB />} />
           <Route path="/register-section-fb" element={<RegisterSectionFB />} />
           <Route path="/thank-you" element={<ThankYou />} />
           <Route path="/thank-you-fb" element={<ThankYouFB />} />
