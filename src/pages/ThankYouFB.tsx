@@ -1,10 +1,17 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import { FaCalendarAlt, FaClock, FaGlobe, FaWhatsapp } from "react-icons/fa";
 import { GiPartyPopper } from "react-icons/gi";
+import { useWorkshopConfig } from "@/hooks/useWorkshopConfig";
+import { formatDateWithSuffix, formatTime } from "@/utils/dateHelpers";
 
-const ThankYouEG = () => {
+const ThankYouFB = () => {
+  const { config } = useWorkshopConfig();
   const [confetti, setConfetti] = useState(true);
+
+  const day1 = config?.day1_datetime || "2026-02-21T20:00:00";
+  const day2 = config?.day2_datetime || "2026-02-22T10:00:00";
+  const whatsappLink =
+    config?.whatsapp_link || "https://chat.whatsapp.com/EYhPWBybzoO2xP35GbKKJ0";
 
   useEffect(() => {
     const t = setTimeout(() => setConfetti(false), 4000);
@@ -40,14 +47,14 @@ const ThankYouEG = () => {
           <div className="flex items-center gap-3">
             <FaCalendarAlt className="text-primary text-lg" />
             <span className="text-sm text-foreground">
-              21st & 22nd February 2026
+              {formatDateWithSuffix(day1)} & {formatDateWithSuffix(day2)}
             </span>
           </div>
 
           <div className="flex items-center gap-3">
             <FaClock className="text-primary text-lg" />
             <span className="text-sm text-foreground">
-              Day 1: 8:00 PM | Day 2: 10:00 AM
+              Day 1: {formatTime(day1)} | Day 2: {formatTime(day2)}
             </span>
           </div>
 
@@ -61,17 +68,19 @@ const ThankYouEG = () => {
         </div>
 
         {/* WhatsApp Button */}
-        <Link
-          to="https://chat.whatsapp.com/EYhPWBybzoO2xP35GbKKJ0"
+        <a
+          href={whatsappLink}
+          target="_blank"
+          rel="noopener noreferrer"
           className="inline-flex items-center gap-2 bg-gradient-primary text-primary-foreground font-bold px-8 py-3 rounded-xl shadow-glow hover:scale-105 transition-transform"
         >
           <FaWhatsapp />
           Whatsapp Group Join Karein →
-        </Link>
+        </a>
 
       </div>
     </div>
   );
 };
 
-export default ThankYouEG;
+export default ThankYouFB;

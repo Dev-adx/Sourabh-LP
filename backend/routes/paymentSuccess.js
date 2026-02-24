@@ -60,7 +60,7 @@ router.post("/", async (req, res) => {
     }
 
     // ✅ Redirect to thank you page
-    return res.redirect(process.env.FRONTEND_URL + "/thank-you-eg");
+    return res.redirect(process.env.FRONTEND_URL + "/thank-you-fb");
 
   } catch (error) {
     console.error("Payment Success Route Error:", error.message);

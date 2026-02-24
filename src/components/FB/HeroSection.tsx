@@ -1,14 +1,21 @@
 import { useEffect, useState, useRef } from "react";
 import { Volume2, VolumeX } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import { useWorkshopConfig } from "@/hooks/useWorkshopConfig";
+import { formatDateWithSuffix, formatTime } from "@/utils/dateHelpers";
 
 const HeroSection = () => {
   const navigate = useNavigate();
+  const { config } = useWorkshopConfig();
+  const day1 = config?.day1_datetime || "2026-02-21T20:00:00";
+  const day2 = config?.day2_datetime || "2026-02-22T10:00:00";
+
   const [timeLeft, setTimeLeft] = useState({ hours: 0, min: 0, sec: 0 });
 
   useEffect(() => {
-    const year = new Date().getFullYear();
-    const target = new Date(year, 1, 21, 20, 0, 0).getTime(); // 21 Feb 8 PM
+    if (!config?.day1_datetime) return;
+
+    const target = new Date(config.day1_datetime).getTime();
 
     const tick = () => {
       const now = Date.now();
@@ -24,7 +31,7 @@ const HeroSection = () => {
     tick();
     const id = setInterval(tick, 1000);
     return () => clearInterval(id);
-  }, []);
+  }, [config?.day1_datetime]);
 
   const videoRef = useRef<HTMLVideoElement>(null);
 const [isMuted, setIsMuted] = useState(true);
@@ -85,9 +92,9 @@ const toggleMute = () => {
   
   <span className="shadow-[0_0_10px_rgba(255,165,0,0.7)] rounded-2xl px-3 py-1">
    <span className="flex items-center gap-3">
-      <span>21st February</span>
+      <span>{formatDateWithSuffix(day1)}</span>
       <span>&</span>
-      <span>22nd February</span>
+      <span>{formatDateWithSuffix(day2)}</span>
     </span>
   </span>
 
@@ -95,9 +102,9 @@ const toggleMute = () => {
 
   <span className="shadow-[0_0_10px_rgba(255,165,0,0.7)] rounded-2xl px-3 py-1">
     <span className="flex items-center gap-3">
-      <span>Day 1: 8:00 PM</span>
+      <span>Day 1: {formatTime(day1)}</span>
       <span>&</span>
-      <span>Day 2: 10:00 AM</span>
+      <span>Day 2: {formatTime(day2)}</span>
     </span>
   </span>
 
