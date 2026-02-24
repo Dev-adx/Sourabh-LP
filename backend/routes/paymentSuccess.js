@@ -17,9 +17,7 @@ router.post("/", async (req, res) => {
       hash,
       udf1,
       udf2,
-      udf3,
-      udf4,
-      udf5
+      udf3
     } = req.body;
 
     const salt = process.env.EASEBUZZ_SALT;
@@ -47,8 +45,6 @@ router.post("/", async (req, res) => {
         age: udf1,
         city: udf2,
         bookingFor: udf3,
-        profession: udf4,
-        painArea: udf5,
         email,
         phone,
         txnid,

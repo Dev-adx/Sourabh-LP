@@ -36,26 +36,51 @@ router.post("/", async (req, res) => {
 
     if (event === "payment.captured" || event === "payment_link.paid") {
       const payment = payload.payload.payment.entity;
+      const paymentLink = payload.payload.payment_link?.entity;
+
+      // Log full entities to find exact occupation field path
+      console.log("Payment entity:", JSON.stringify(payment, null, 2));
+      console.log("Payment link entity:", JSON.stringify(paymentLink, null, 2));
+
       const paymentId = payment.id;
       const amount = (payment.amount / 100).toString();
       const email = payment.email || "";
       const phone = normalizePhone(payment.contact);
 
-      // Look up pre-saved form data by phone number
+      // Look up pre-saved form data by phone number (FB form flow)
       const formData = registrationStore.get(phone) || {};
 
-      // Merge: prefer our form data, fall back to Razorpay's payment data
+      // For non-FB flow (direct Razorpay), all data comes from the payment_link entity
+      // customer_details has name/email/contact; notes has custom fields (age, city, occupation)
+      const rzName =
+        paymentLink?.customer_details?.name ||
+        payment.notes?.full_name ||
+        "";
+      const rzAge =
+        paymentLink?.notes?.Age ||
+        paymentLink?.notes?.age ||
+        payment.notes?.Age ||
+        payment.notes?.age ||
+        "";
+      const rzCity =
+        paymentLink?.notes?.city ||
+        paymentLink?.notes?.City ||
+        payment.notes?.city ||
+        "";
+      const rzOccupation =
+        paymentLink?.notes?.["Your occupation"] ||
+        paymentLink?.notes?.occupation ||
+        payment.notes?.["Your occupation"] ||
+        payment.notes?.occupation ||
+        "";
+
       const row = {
-        name: formData.name || payment.notes?.name || "",
-        age: formData.age || "",
-        city: formData.city || payment.notes?.city || "",
+        name: formData.name || rzName,
+        age: formData.age || rzAge,
+        city: formData.city || rzCity,
         email: formData.email || email,
         phone: formData.phone || phone,
-        bookingFor: formData.bookingFor || "",
-        profession: formData.profession || payment.notes?.occupation || "",
-        painArea: Array.isArray(formData.painArea)
-          ? formData.painArea.join(", ")
-          : (formData.painArea || ""),
+        profession: rzOccupation,
         txnid: paymentId,
         amount,
       };

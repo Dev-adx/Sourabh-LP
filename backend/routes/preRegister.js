@@ -4,7 +4,7 @@ const registrationStore = require("../store");
 const router = express.Router();
 
 router.post("/", (req, res) => {
-  const { name, age, city, email, phone, bookingFor, profession, painArea } = req.body;
+  const { name, age, city, email, phone, profession } = req.body;
 
   if (!phone) {
     return res.status(400).json({ error: "Phone required" });
@@ -16,9 +16,7 @@ router.post("/", (req, res) => {
     city,
     email,
     phone,
-    bookingFor,
     profession,
-    painArea,
     timestamp: Date.now(),
   });
 

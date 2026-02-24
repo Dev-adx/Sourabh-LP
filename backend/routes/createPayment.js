@@ -4,7 +4,7 @@ const crypto = require("crypto");
 const router = express.Router();
 
 router.post("/", (req, res) => {
-  const { name, email, phone, age, city, bookingFor, profession, painArea } = req.body;
+  const { name, email, phone, age, city, profession } = req.body;
 
   const key = process.env.EASEBUZZ_KEY;
   const salt = process.env.EASEBUZZ_SALT;
@@ -17,12 +17,10 @@ router.post("/", (req, res) => {
 
   const udf1 = age || "";
   const udf2 = city || "";
-  const udf3 = bookingFor || "";
-  const udf4 = profession || "";
-  const udf5 = (painArea && painArea.join(", ")) || "";
+  const udf3 = profession || "";
 
   const hashString =
-    `${key}|${txnid}|${amount}|${productinfo}|${name}|${email}|${udf1}|${udf2}|${udf3}|${udf4}|${udf5}||||||${salt}`;
+    `${key}|${txnid}|${amount}|${productinfo}|${name}|${email}|${udf1}|${udf2}|${udf3}||||||${salt}`;
 
   const hash = crypto.createHash("sha512").update(hashString).digest("hex");
 
@@ -39,9 +37,7 @@ router.post("/", (req, res) => {
     hash,
     udf1,
     udf2,
-    udf3,
-    udf4,
-    udf5
+    udf3
   });
 });
 

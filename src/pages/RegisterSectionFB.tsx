@@ -10,22 +10,10 @@ const RegisterSection = () => {
     city: "",
     email: "",
     phone: "",
-    bookingFor: "",
-    profession: "",
-    painArea: [] as string[],
   });
 
   const [errors, setErrors] = useState<any>({});
   const [shake, setShake] = useState(false);
-
-  const handlePainToggle = (area: string) => {
-    setFormData(prev => ({
-      ...prev,
-      painArea: prev.painArea.includes(area)
-        ? prev.painArea.filter(a => a !== area)
-        : [...prev.painArea, area],
-    }));
-  };
 
   const validate = () => {
     const newErrors: any = {};
@@ -36,9 +24,6 @@ const RegisterSection = () => {
     if (!formData.email.trim()) newErrors.email = true;
     if (!formData.phone.trim() || !/^[0-9]{10}$/.test(formData.phone))
       newErrors.phone = true;
-    if (!formData.profession.trim()) newErrors.profession = true;
-    if (!formData.bookingFor.trim()) newErrors.bookingFor = true;
-    if (formData.painArea.length === 0) newErrors.painArea = true;
 
     setErrors(newErrors);
 
@@ -71,6 +56,7 @@ const RegisterSection = () => {
       email: formData.email,
       phone: formData.phone,
       city: formData.city,
+      age: formData.age,
     });
 
     setTimeout(() => {
@@ -131,7 +117,7 @@ const RegisterSection = () => {
 
                 {/* Name */}
                 <div>
-                  <label className="text-sm text-muted-foreground mb-1 block">Name</label>
+                  <label className="text-sm text-muted-foreground mb-1 block">Full Name</label>
                   <input
                     className={inputClass("name")}
                     value={formData.name}
@@ -193,86 +179,6 @@ const RegisterSection = () => {
                       })
                     }
                   />
-                </div>
-
-                {/* Radio */}
-                <div className={errors.bookingFor ? "border border-red-500 rounded-xl p-3" : ""}>
-                  <label className="text-sm text-muted-foreground mb-2 block">
-                    Aap kiske liye book kar rahe hain?
-                  </label>
-
-                  <div className="flex gap-4">
-                    {[
-                      { val: "Apne liye", label: "Apne liye" },
-                      { val: "Kisi loved one ke liye", label: "Kisi loved one ke liye" },
-                    ].map((o) => (
-                      <label key={o.val} className="flex items-center gap-2 cursor-pointer">
-                        <input
-                          type="radio"
-                          name="bookingFor"
-                          value={o.val}
-                          checked={formData.bookingFor === o.val}
-                          onChange={() =>
-                            setFormData({ ...formData, bookingFor: o.val })
-                          }
-                          className="appearance-none w-4 h-4 rounded-full border-2 border-gray-400
-                             checked:border-orange-500 checked:bg-orange-500
-                             relative cursor-pointer
-                             before:content-[''] before:absolute before:inset-1
-                             before:rounded-full before:bg-black
-                             checked:before:bg-black"
-                        />
-                        <span className="text-sm text-foreground">
-                          {o.label}
-                        </span>
-                      </label>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Profession */}
-                <div>
-                  <label className="text-sm text-muted-foreground mb-1 block">
-                    Aap kya karte hain?
-                  </label>
-                  <select
-                    className={inputClass("profession")}
-                    value={formData.profession}
-                    onChange={e =>
-                      setFormData({ ...formData, profession: e.target.value })
-                    }
-                  >
-                    <option value="">Select Profession</option>
-                    <option value="Working Professional">Working Professional</option>
-                    <option value="Business Owner / Entrepreneur">Business Owner / Entrepreneur</option>
-                    <option value="Self-Employed / Freelancer">Self-Employed / Freelancer</option>
-                    <option value="Retired / Homemaker">Retired / Homemaker</option>
-                  </select>
-                </div>
-
-                {/* Pain Area */}
-                <div>
-                  <label className="text-sm text-muted-foreground mb-2 block">
-                    Aapki pareshani kya hai?
-                  </label>
-                  <div className="flex gap-3">
-                    {["Knee", "Neck", "Spine"].map(area => (
-                      <button
-                        key={area}
-                        type="button"
-                        onClick={() => handlePainToggle(area)}
-                        className={`px-5 py-2 rounded-xl text-sm font-semibold border transition-all ${
-                          formData.painArea.includes(area)
-                            ? "bg-orange-500 text-black border-orange-500"
-                            : errors.painArea
-                            ? "border-red-500"
-                            : "bg-card border-border text-foreground hover:border-orange-500"
-                        }`}
-                      >
-                        {area}
-                      </button>
-                    ))}
-                  </div>
                 </div>
 
                 {/* CTA */}
