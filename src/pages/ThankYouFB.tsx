@@ -20,10 +20,6 @@ const ThankYouFB = () => {
     config?.whatsapp_link || "https://chat.whatsapp.com/EYhPWBybzoO2xP35GbKKJ0";
 
   useEffect(() => {
-    if (window.fbq) window.fbq("track", "Purchase", { value: 99, currency: "INR" });
-  }, []);
-
-  useEffect(() => {
     const t = setTimeout(() => setConfetti(false), 4000);
     return () => clearTimeout(t);
   }, []);
