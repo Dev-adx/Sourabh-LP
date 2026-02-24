@@ -11,7 +11,7 @@ const StickyFooter = () => {
 
       <button
   onClick={() => {
-    navigate("/register-section-eg");
+    navigate("/register-section-fb");
   }}
         className="relative w-full text-center py-4 rounded-xl 
         bg-gradient-to-r from-[#FF8A00] via-[#FFA000] to-[#FF6A00]
