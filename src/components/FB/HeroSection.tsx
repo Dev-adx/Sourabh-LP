@@ -127,7 +127,7 @@ const toggleMute = () => {
 
     <button
   onClick={() => {
-    navigate("/register-section-eg");
+    navigate("/register-section-fb");
   }}
       className="relative px-10 py-4 rounded-xl 
       bg-gradient-to-r from-[#FF8A00] via-[#FFA000] to-[#FF6A00]

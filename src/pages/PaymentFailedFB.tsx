@@ -15,7 +15,7 @@ const PaymentFailed = () => {
         </p>
 
         <button
-          onClick={() => navigate("/register-section-eg")}
+          onClick={() => navigate("/register-section-fb")}
           className="px-8 py-3 rounded-xl 
           bg-gradient-to-r from-[#FF8A00] via-[#FFA000] to-[#FF6A00]
           text-black font-bold text-sm

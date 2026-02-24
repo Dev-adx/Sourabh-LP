@@ -38,8 +38,8 @@ const App = () => (
         <MetaRouteTracker />
 
         <Routes>
-          <Route path="/index" element={<Index />} />
-          <Route path="/" element={<IndexFB />} />
+          <Route path="/" element={<Index />} />
+          <Route path="/index-fb" element={<IndexFB />} />
           <Route path="/register-section-fb" element={<RegisterSectionFB />} />
           <Route path="/thank-you" element={<ThankYou />} />
           <Route path="/thank-you-fb" element={<ThankYouFB />} />

@@ -28,7 +28,7 @@ const UrgencySection = () => {
         <p className="text-primary font-semibold mb-6">41 Seats Bachi Hain | Aapki Pain-Free Life Yahan Se Start Hoti Hai</p>
         <button
   onClick={() => {
-    navigate("/register-section-eg");
+    navigate("/register-section-fb");
   }}
   className="relative px-24 py-4 rounded-xl 
   bg-gradient-to-r from-[#FF8A00] via-[#FFA000] to-[#FF6A00]
