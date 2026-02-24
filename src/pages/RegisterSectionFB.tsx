@@ -203,8 +203,8 @@ const RegisterSection = () => {
 
                   <div className="flex gap-4">
                     {[
-                      { val: "self", label: "Apne liye" },
-                      { val: "other", label: "Kisi loved one ke liye" },
+                      { val: "Apne liye", label: "Apne liye" },
+                      { val: "Kisi loved one ke liye", label: "Kisi loved one ke liye" },
                     ].map((o) => (
                       <label key={o.val} className="flex items-center gap-2 cursor-pointer">
                         <input
