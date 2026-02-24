@@ -65,7 +65,7 @@ const RegisterSection = () => {
     // Track Facebook pixel event
     if (window.fbq) window.fbq("track", "InitiateCheckout");
 
-    // Redirect to Razorpay with pre-filled fields
+    // Redirect to Razorpay with pre-filled fields (delay to let pixel fire)
     const params = new URLSearchParams({
       full_name: formData.name,
       email: formData.email,
@@ -73,7 +73,9 @@ const RegisterSection = () => {
       city: formData.city,
     });
 
-    window.location.href = `${RAZORPAY_PAYMENT_LINK}?${params.toString()}`;
+    setTimeout(() => {
+      window.location.href = `${RAZORPAY_PAYMENT_LINK}?${params.toString()}`;
+    }, 300);
   };
 
   const inputClass = (field: string) =>
