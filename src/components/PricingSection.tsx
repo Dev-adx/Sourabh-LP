@@ -54,6 +54,7 @@ const PricingSection = () => {
               onClick={() => {
                 if (window.fbq) {
                   window.fbq("track", "AddToCart");
+                  window.fbq("track", "Subscribe");
                 }
 
                 // small delay for tracking

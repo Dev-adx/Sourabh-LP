@@ -47,6 +47,7 @@ const UrgencySection = () => {
             onClick={() => {
               if (window.fbq) {
                 window.fbq("track", "AddToCart");
+                window.fbq("track", "Subscribe");
               }
 
               setTimeout(() => {

@@ -132,7 +132,10 @@ const toggleMute = () => {
     <button
       onClick={() => {
         // @ts-ignore
-        if (window.fbq) window.fbq("track", "AddToCart");
+        if (window.fbq) {
+          window.fbq("track", "AddToCart");
+          window.fbq("track", "Subscribe");
+        }
         window.location.href = paymentLink;
       }}
       className="relative px-10 py-4 rounded-xl 

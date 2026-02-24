@@ -11,6 +11,10 @@ const StickyFooter = () => {
 
       <button
   onClick={() => {
+    if (window.fbq) {
+      window.fbq("track", "AddToCart");
+      window.fbq("track", "Subscribe");
+    }
     navigate("/register-section-fb");
   }}
         className="relative w-full text-center py-4 rounded-xl 

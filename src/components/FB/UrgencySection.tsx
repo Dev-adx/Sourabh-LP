@@ -28,6 +28,10 @@ const UrgencySection = () => {
         <p className="text-primary font-semibold mb-6">41 Seats Bachi Hain | Aapki Pain-Free Life Yahan Se Start Hoti Hai</p>
         <button
   onClick={() => {
+    if (window.fbq) {
+      window.fbq("track", "AddToCart");
+      window.fbq("track", "Subscribe");
+    }
     navigate("/register-section-fb");
   }}
   className="relative px-24 py-4 rounded-xl 

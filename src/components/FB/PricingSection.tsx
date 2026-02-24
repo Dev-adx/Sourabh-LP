@@ -28,6 +28,10 @@ const PricingSection = () => {
           </div>
           <button
   onClick={() => {
+    if (window.fbq) {
+      window.fbq("track", "AddToCart");
+      window.fbq("track", "Subscribe");
+    }
     navigate("/register-section-fb");
   }}
   className="relative px-12 py-4 rounded-xl 

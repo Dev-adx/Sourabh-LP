@@ -4,6 +4,12 @@ import { GiPartyPopper } from "react-icons/gi";
 import { useWorkshopConfig } from "@/hooks/useWorkshopConfig";
 import { formatDateWithSuffix, formatTime } from "@/utils/dateHelpers";
 
+declare global {
+  interface Window {
+    fbq?: (...args: any[]) => void;
+  }
+}
+
 const ThankYouFB = () => {
   const { config } = useWorkshopConfig();
   const [confetti, setConfetti] = useState(true);
@@ -12,6 +18,10 @@ const ThankYouFB = () => {
   const day2 = config?.day2_datetime || "2026-02-22T10:00:00";
   const whatsappLink =
     config?.whatsapp_link || "https://chat.whatsapp.com/EYhPWBybzoO2xP35GbKKJ0";
+
+  useEffect(() => {
+    if (window.fbq) window.fbq("track", "Purchase", { value: 99, currency: "INR" });
+  }, []);
 
   useEffect(() => {
     const t = setTimeout(() => setConfetti(false), 4000);

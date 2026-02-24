@@ -19,6 +19,7 @@ const StickyFooter = () => {
   onClick={() => {
     if (window.fbq) {
       window.fbq("track", "AddToCart");
+      window.fbq("track", "Subscribe");
     }
 
     const dynamicLink =

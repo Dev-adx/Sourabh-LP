@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FaCalendarAlt, FaClock, FaGlobe, FaWhatsapp } from "react-icons/fa";
 import { GiPartyPopper } from "react-icons/gi";
 import { useWorkshopConfig } from "@/hooks/useWorkshopConfig";
@@ -7,6 +7,10 @@ import { formatDateWithSuffix, formatTime } from "@/utils/dateHelpers";
 const ThankYou = () => {
   const { config } = useWorkshopConfig();
   const [confetti, setConfetti] = useState(true);
+
+  useEffect(() => {
+    if (window.fbq) window.fbq("track", "Purchase", { value: 99, currency: "INR" });
+  }, []);
 
   const day1 = config?.day1_datetime || "2026-02-21T20:00:00";
   const day2 = config?.day2_datetime || "2026-02-22T10:00:00";
