@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { FaCalendarAlt, FaClock, FaGlobe, FaWhatsapp } from "react-icons/fa";
 import { GiPartyPopper } from "react-icons/gi";
 import { useWorkshopConfig } from "@/hooks/useWorkshopConfig";
+import { useFacebookPixel } from "@/hooks/useFacebookPixel";
 import { formatDateWithSuffix, formatTime } from "@/utils/dateHelpers";
 
 declare global {
@@ -13,6 +14,9 @@ declare global {
 const ThankYouFB = () => {
   const { config } = useWorkshopConfig();
   const [confetti, setConfetti] = useState(true);
+
+  // Track PageView only
+  useFacebookPixel({ eventName: "PageView" });
 
   const day1 = config?.day1_datetime || "2026-02-21T20:00:00";
   const day2 = config?.day2_datetime || "2026-02-22T10:00:00";
