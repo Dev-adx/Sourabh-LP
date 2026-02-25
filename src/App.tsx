@@ -12,6 +12,10 @@ import NotFound from "./pages/NotFound";
 import RegisterSectionFB from "./pages/RegisterSectionFB";
 import ThankYouFB from "./pages/ThankYouFB";
 import PaymentFailedFB from "./pages/PaymentFailedFB";
+import IndexGA from "./pages/IndexGA";
+import ThankYouGA from "./pages/ThankYouGA";
+import RegisterSectionGA from "./pages/RegisterSectionGA";
+import PaymentFailedGA from "./pages/PaymentFailedGA";
 
 const queryClient = new QueryClient();
 
@@ -40,10 +44,14 @@ const App = () => (
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/fb" element={<IndexFB />} />
+          <Route path="/ga" element={<IndexGA />} />
           <Route path="/register-section-fb" element={<RegisterSectionFB />} />
+          <Route path="/register-section-ga" element={<RegisterSectionGA />} />
           <Route path="/thank-you" element={<ThankYou />} />
           <Route path="/thank-you-fb" element={<ThankYouFB />} />
+          <Route path="/thank-you-ga" element={<ThankYouGA />} />
           <Route path="/payment-failed-fb" element={<PaymentFailedFB />} />
+          <Route path="/payment-failed-ga" element={<PaymentFailedGA />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
 
