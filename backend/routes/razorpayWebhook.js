@@ -69,9 +69,15 @@ router.post("/", async (req, res) => {
         "";
       const rzOccupation =
         paymentLink?.notes?.["Your occupation"] ||
+        paymentLink?.notes?.["Your Occupation"] ||
         paymentLink?.notes?.occupation ||
+        paymentLink?.notes?.Occupation ||
+        paymentLink?.notes?.profession ||
         payment.notes?.["Your occupation"] ||
+        payment.notes?.["Your Occupation"] ||
         payment.notes?.occupation ||
+        payment.notes?.Occupation ||
+        payment.notes?.profession ||
         "";
 
       const row = {
@@ -80,9 +86,9 @@ router.post("/", async (req, res) => {
         city: formData.city || rzCity,
         email: formData.email || email,
         phone: formData.phone || phone,
-        profession: rzOccupation,
-        txnid: paymentId,
-        amount,
+        profession: formData.profession || rzOccupation,
+        Txnid: paymentId,
+        Amount: amount,
       };
 
       await axios.post(process.env.GOOGLE_SHEET_URL, row);
