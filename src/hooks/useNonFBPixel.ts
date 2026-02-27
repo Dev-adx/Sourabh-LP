@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 
 interface UseNonFBPixelProps {
   eventName: string;
@@ -8,8 +8,11 @@ interface UseNonFBPixelProps {
 let initialized = false;
 
 export const useNonFBPixel = ({ eventName, eventParams }: UseNonFBPixelProps) => {
+  const tracked = useRef(false);
+
   useEffect(() => {
-    if (window.fbq) {
+    if (window.fbq && !tracked.current) {
+      tracked.current = true;
       if (!initialized) {
         window.fbq("init", "1278108320936716");
         initialized = true;
