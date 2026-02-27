@@ -18,7 +18,6 @@ const ThankYouFB = () => {
     if (window.fbq) {
       window.fbq("init", "945210531500711");
       window.fbq("track", "PageView");
-      window.fbq("track", "Purchase");
     }
   }, []);
 

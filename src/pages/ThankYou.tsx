@@ -6,14 +6,14 @@ import { formatDateWithSuffix, formatTime } from "@/utils/dateHelpers";
 
 const ThankYou = () => {
   const { config } = useWorkshopConfig();
-  const [confetti, setConfetti] = useState(true);
+  const [confetti] = useState(true);
 
   useEffect(() => {
     if (window.fbq) {
       window.fbq("init", "945210531500711");
       window.fbq("init", "1278108320936716");
       window.fbq("track", "PageView");
-      window.fbq("track", "Purchase");
+      window.fbq("trackSingle", "1278108320936716", "Purchase");
     }
   }, []);
 
