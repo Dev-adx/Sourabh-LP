@@ -5,12 +5,16 @@ interface UseNonFBPixelProps {
   eventParams?: Record<string, any>;
 }
 
+let initialized = false;
+
 export const useNonFBPixel = ({ eventName, eventParams }: UseNonFBPixelProps) => {
   useEffect(() => {
-    // Initialize the non-FB pixel
     if (window.fbq) {
-      window.fbq("init", "1278108320936716");
+      if (!initialized) {
+        window.fbq("init", "1278108320936716");
+        initialized = true;
+      }
       window.fbq("track", eventName, eventParams);
     }
-  }, [eventName, eventParams]);
+  }, []);
 };

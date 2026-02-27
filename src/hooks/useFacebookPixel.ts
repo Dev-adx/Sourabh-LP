@@ -5,10 +5,15 @@ interface UseFacebookPixelProps {
   eventParams?: Record<string, any>;
 }
 
+let initialized = false;
+
 export const useFacebookPixel = ({ eventName, eventParams }: UseFacebookPixelProps) => {
   useEffect(() => {
     if (window.fbq) {
-      window.fbq("init", "945210531500711");
+      if (!initialized) {
+        window.fbq("init", "945210531500711");
+        initialized = true;
+      }
       window.fbq("track", eventName, eventParams);
     }
   }, []);
