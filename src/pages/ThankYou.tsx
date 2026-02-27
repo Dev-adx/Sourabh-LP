@@ -1,16 +1,21 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { FaCalendarAlt, FaClock, FaGlobe, FaWhatsapp } from "react-icons/fa";
 import { GiPartyPopper } from "react-icons/gi";
 import { useWorkshopConfig } from "@/hooks/useWorkshopConfig";
-import { useNonFBPixel } from "@/hooks/useNonFBPixel";
 import { formatDateWithSuffix, formatTime } from "@/utils/dateHelpers";
 
 const ThankYou = () => {
   const { config } = useWorkshopConfig();
   const [confetti, setConfetti] = useState(true);
 
-  useNonFBPixel({ eventName: "PageView" });
-  useNonFBPixel({ eventName: "Purchase", eventParams: {} });
+  useEffect(() => {
+    if (window.fbq) {
+      window.fbq("init", "945210531500711");
+      window.fbq("init", "1278108320936716");
+      window.fbq("track", "PageView");
+      window.fbq("track", "Purchase");
+    }
+  }, []);
 
   const day1 = config?.day1_datetime || "2026-02-21T20:00:00";
   const day2 = config?.day2_datetime || "2026-02-22T10:00:00";
