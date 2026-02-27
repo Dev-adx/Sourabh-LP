@@ -1,9 +1,11 @@
 import { useState } from "react";
 import AnimatedSection from "@/components/AnimatedSection";
+import { useFacebookPixel } from "@/hooks/useFacebookPixel";
 
 const RAZORPAY_PAYMENT_LINK = "https://pages.razorpay.com/pl_SIpsxh7hbcrVQR/view";
 
 const RegisterSection = () => {
+  useFacebookPixel({ eventName: "PageView" });
   const [formData, setFormData] = useState({
     name: "",
     age: "",
@@ -48,7 +50,10 @@ const RegisterSection = () => {
     }).catch(console.error); // fire-and-forget
 
     // Track Facebook pixel event
-    if (window.fbq) window.fbq("track", "InitiateCheckout");
+    if (window.fbq) {
+      window.fbq("init", "945210531500711");
+      window.fbq("track", "InitiateCheckout");
+    }
 
     // Redirect to Razorpay with pre-filled fields (delay to let pixel fire)
     const params = new URLSearchParams({

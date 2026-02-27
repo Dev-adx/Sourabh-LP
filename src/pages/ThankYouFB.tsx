@@ -15,8 +15,9 @@ const ThankYouFB = () => {
   const { config } = useWorkshopConfig();
   const [confetti, setConfetti] = useState(true);
 
-  // Track PageView only
+  // Track PageView and Purchase
   useFacebookPixel({ eventName: "PageView" });
+  useFacebookPixel({ eventName: "Purchase", eventParams: {} });
 
   const day1 = config?.day1_datetime || "2026-02-21T20:00:00";
   const day2 = config?.day2_datetime || "2026-02-22T10:00:00";
